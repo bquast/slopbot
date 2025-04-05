@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form onsubmit="chat(); return false;">
+  <input id="user" placeholder="Say something">
+  <button>Send</button>
+</form>
+<pre id="res"></pre>
+<script>
+async function chat() {
+  const res = await fetch('/api/chat', {
+    method: 'POST',
+    body: JSON.stringify({ message: user.value })
+  });
+  document.getElementById('res').textContent = await res.text();
+}
+</script>
+</body>
+</html>
